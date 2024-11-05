@@ -1,4 +1,4 @@
-#California Housing Price Prediction with Random Forest
+# California Housing Price Prediction with Random Forest
 
 ## Overview
 This project uses the Scikit-Learn and Pandas libraries to build a Random Forest model to predict housing prices in California. 
