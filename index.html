@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Value Prediction In California</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="center-div">
+        <h2>Predict House Value In California</h2>
+        
+        <form id="predictionForm">
+            <div class="form-group">
+                <label>Income:</label>
+                <input type="number" name="median_income" step="0.01" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Proximity to the ocean:</label>
+                <select name="feature_selection" required>
+                    <option value="">Select an option</option>
+                    <option value="INLAND">Inland</option>
+                    <option value="<1H OCEAN">Near 1H Ocean</option>
+                    <option value="NEAR OCEAN">Near Ocean</option>
+                    <option value="NEAR BAY">Near Bay</option>
+                    <option value="ISLAND">Island</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>N° people in the house:</label>
+                <input type="number" name="population_per_household" step="0.01" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Longitude:</label>
+                <input type="number" name="longitude" step="0.01" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Latitude:</label>
+                <input type="number" name="latitude" step="0.01" required>
+            </div>
+            
+            <div class="form-group">
+                <label>N° Rooms:</label>
+                <input type="number" name="rooms_per_household" step="0.01" required>
+            </div>
+            
+            <div class="form-group">
+                <label>N° Bedrooms:</label>
+                <input type="number" name="bedrooms" required>
+            </div>
+            
+            <div class="form-group">
+                <label>House Age:</label>
+                <input type="number" name="housing_median_age" required>
+            </div>
+    
+            <button type="button" onclick="predictHouseValue()">Predict</button>
+        </form>
+        <p id="predictionResult"></p>
+    </div>
+    
+    
+
+    <script>
+        function predictHouseValue() {
+            const form = document.getElementById("predictionForm");
+            const formData = new FormData(form);
+            const data = {};
+    
+            for (const [key, value] of formData.entries()) {
+                data[key] = value; // Get values from the form
+            }
+    
+            fetch("http://127.0.0.1:5000/predict", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Display the initial prediction
+                let resultText = "Predicted House Value: " + data.predicted_median_house_value + "<br>";
+                document.getElementById("predictionResult").innerHTML = resultText;
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        }
+    </script>
+    
+</body>
+</html>

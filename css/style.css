@@ -1,0 +1,76 @@
+body {
+    height: 100vh;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,103,121,1) 35%, rgba(0,212,255,1) 100%);
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.center-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+    font-size: 2em;
+    color: aliceblue;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+label {
+    color: aliceblue;
+    font-size: 1em;
+    margin-bottom: 5px;
+}
+
+input, select, button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+button {
+    margin-top: 20px;
+    background-color: #006688;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0090b8;
+}
+
+#predictionResult {
+    color: #66FF00;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-top: 20px;
+    text-align: center;
+}
