@@ -85,7 +85,7 @@
             .then(response => response.json())
             .then(data => {
                 // Display the initial prediction
-                let resultText = "Predicted House Value: " + data.predicted_median_house_value + "<br>";
+                let resultText = "Predicted House Value: " + data.predicted_median_house_value + "$<br>";
                 document.getElementById("predictionResult").innerHTML = resultText;
             })
             .catch(error => {
