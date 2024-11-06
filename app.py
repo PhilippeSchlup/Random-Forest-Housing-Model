@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 import joblib
 import numpy as np
@@ -8,9 +8,8 @@ from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
-from sklearn.base import BaseEstimator, TransformerMixin
-import pandas as pd 
 
+# Define data path and load the dataset
 HOUSING_PATH = "./datasets/housing/"
 
 def load_housing_data(housing_path=HOUSING_PATH):
@@ -59,6 +58,12 @@ housing_model = joblib.load("models/final_random_forest_housing_model.pkl")
 app = Flask(__name__)
 CORS(app)
 
+# Route to serve the HTML page
+@app.route('/')
+def home():
+    return render_template("index.html")
+
+# Prediction endpoint
 @app.route('/predict', methods=['POST'])
 def predict():
     # Get data from the POST request
@@ -105,4 +110,4 @@ def predict():
     return jsonify({"predicted_median_house_value": prediction[0]})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=8000)
